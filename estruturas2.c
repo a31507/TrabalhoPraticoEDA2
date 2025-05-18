@@ -28,6 +28,19 @@ Grafo* CriarGrafo() {
     return g;
 }
 
+Antena* CriarAntena(char freq, int x, int y) {
+    Antena *a = malloc(sizeof(Antena));                                       // alocado espaço para a nova antena
+    if (a == NULL) return NULL;                                               // se não for possível alocar memória, retorna NULL
+
+    a->frequencia = freq;                                                     // atribuída a frequência recebida
+    a->x = x;                                                                  // atribuída a coordenada x
+    a->y = y;                                                                  // atribuída a coordenada y
+    a->adj = NULL;                                                             // inicializada a lista de adjacências a NULL
+    a->prox = NULL;                                                            // próxima antena também a NULL
+
+    return a;                                                                  // retorna a antena criada
+}
+
 
 Antena* InsereAntena(Grafo *g, Antena *nova) {
     if (g == NULL || nova == NULL) return NULL;                               // caso o grafo ou a antena a inserir seja nula, retorna NULL
@@ -330,7 +343,59 @@ int DFS(Grafo *g, int x, int y, int coords[][2]) {                          // f
     return DFSaux(inicio, coords, 0);
 }
 
+int BFS(Grafo *g, int x, int y, int coords[][2]) {                           // funcao principal de procura em largura a partir de uma antena nas coordenadas dadas
+    if (!g) 
+        return 0;
 
+    for (Antena *a = g->inicio; a; a = a->prox)                              // reinicializa o estado de visitado de todas as antenas
+        a->visitado = 0;
+
+    Antena *inicio = g->inicio;
+    while (inicio) {                                                         // procura a antena de partida com as coordenadas dadas
+        if (inicio->x == x && inicio->y == y)
+            break;
+        inicio = inicio->prox;
+    }
+    if (!inicio)
+        return 0;
+
+    NoFila *inicioFila = NULL, *fimFila = NULL;
+
+    NoFila *novo = malloc(sizeof(NoFila));                                          // aloca o primeiro nó da fila com a antena de partida
+    novo->antena = inicio;
+    novo->prox = NULL;
+    inicioFila = fimFila = novo;
+    inicio->visitado = 1;
+
+    int i = 0;
+
+    while (inicioFila) {                                                            // enquanto houver antenas na fila
+        Antena *a = inicioFila->antena;
+
+        coords[i][0] = a->x;                                                        // guarda as coordenadas da antena atual
+        coords[i][1] = a->y;
+        i++;
+
+        for (Adjacencias *adj = a->adj; adj; adj = adj->prox) {                      // percorre as adjacencias da antena atual
+            Antena *vizinho = adj->antenadestino;
+            if (!vizinho->visitado) {
+                vizinho->visitado = 1;
+
+                NoFila *novo = malloc(sizeof(NoFila));                              // adiciona o vizinho à fila
+                novo->antena = vizinho;
+                novo->prox = NULL;
+                fimFila->prox = novo;
+                fimFila = novo;
+            }
+        }
+
+        NoFila *temp = inicioFila;                                                  // remove o nó atual da fila
+        inicioFila = inicioFila->prox;
+        free(temp);
+    }
+
+    return i;                                                                       // retorna o número total de antenas visitadas
+}
 
 int GuardarCaminhos(Antena *origem, Antena *destino, int caminho[][2], int i, int caminhos[MAXCAMINHOS][MAXPASSOS][2], int total) {
     if (!origem || origem->visitado)                                                // caso a antena seja nula ou ja tenha sido visitada, nao prossegue
