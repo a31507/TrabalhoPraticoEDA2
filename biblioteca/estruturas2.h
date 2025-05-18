@@ -12,6 +12,8 @@
 #define MAXCAMINHOS 100
 #define MAXPASSOS 100
 
+#include <stdbool.h>
+
 /**
  * @brief estrutura da antena que contem a frequência, as coordenadas, lista de adjacências, ponteiro para a próxima antena e flag de visitado
  */
@@ -117,6 +119,16 @@ bool AlterarAntena(Grafo *g, int x, int y, char novaFreq, int novoX, int novoY);
  * @return int número total de ligações criadas
  */
 int InterligarAntenas(Grafo *g);
+
+/**
+ * @brief 
+ * 
+ * @param origem 
+ * @param destino 
+ * @return true 
+ * @return false 
+ */
+bool AdjacenciaExiste(Antena *origem, Antena *destino);
 
 /**
  * @brief guarda o grafo num ficheiro binário

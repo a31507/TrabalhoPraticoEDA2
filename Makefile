@@ -8,8 +8,8 @@ LIB_OBJ = $(LIB_DIR)/estruturas2.o
 LIB_A   = $(LIB_DIR)/libestruturas2.a
 HEADER  = $(LIB_DIR)/estruturas2.h
 
-# Ficheiro principal (altera se for main2.c)
-MAIN = main.c
+# Ficheiro principal 
+MAIN = main2.c
 
 # Compilador e flags
 CC = gcc

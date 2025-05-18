@@ -75,6 +75,9 @@ Adjacencias* InserirAdjacencia(Antena *origem, Antena *destino)  {              
     if (!origem || !destino) 
     return NULL;
 
+    if(AdjacenciaExiste(origem, destino))
+    return NULL;
+      
     int dx = destino->x - origem->x;                                               // inicialmente calculamos a distancia entre as duas antenas
     int dy = destino->y - origem->y;                                               // como o mapa e de coordenadas precisamos de obter quanto vale cada cateto
     float distancia = sqrtf((float)dx*dx + (float)dy*dy);                          // para de seguida calcular a hipotenusa, tendo assim a distancia sem desvios
@@ -216,19 +219,39 @@ int InterligarAntenas(Grafo *g) {
         Antena *a2 = a1->prox;                                          //...
         while (a2 != NULL) {                                            //...
             if (a1->frequencia == a2->frequencia) {                     // caso as antenas tenham a mesma frequencia (requisito para se interligarem)
-               
-                InserirAdjacencia(a1,a2);
+                
+                if (!AdjacenciaExiste(a1, a2)){                         // se nao existir a adjacencia
+                InserirAdjacencia(a1,a2);                               // e inserida a nova adjacencia
+                total++;
+               }
+               if (!AdjacenciaExiste(a2, a1)) {                         //...
                 InserirAdjacencia(a2,a1);
-                    total += 2;
+                total++;
+               }
+                    
                 }
+                a2 = a2->prox;
             }
-            a2 = a2->prox;
+            a1 = a1->prox;   
         }
-        a1 = a1->prox;
+        
     
 
     return total;
 }
+
+bool AdjacenciaExiste(Antena *origem, Antena *destino) {                // funcao auxiliar para nao adicionar adjacencias a mais
+   
+    Adjacencias *adj = origem->adj;
+
+    while (adj != NULL) {                                               // percorre a lista ligada das adjacencias
+        if (adj->antenadestino == destino)                              // se a adjacencia ja exista
+            return 1;                                                   
+        adj = adj->prox;
+    }
+    return 0;                                                           // se nao for encontrada nenhuma!!
+}       
+
 
 bool GravarGrafoBinario(Grafo *g, const char *filename) {
     if (g == NULL || filename == NULL) 
