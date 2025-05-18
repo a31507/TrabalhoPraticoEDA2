@@ -28,31 +28,39 @@ Grafo* CriarGrafo() {
     return g;
 }
 
- Antena* CriarAntena(char freq, int x, int y) {
-    Antena *a = malloc(sizeof(Antena));
-    if (a == NULL) return NULL;
-
-    a->frequencia = freq;
-    a->x = x;
-    a->y = y;
-    a->adj = NULL;
-    a->prox = NULL;
-
-    return a;
-}
 
 Antena* InsereAntena(Grafo *g, Antena *nova) {
-    if (g == NULL || nova == NULL) return NULL;
+    if (g == NULL || nova == NULL) return NULL;                               // caso o grafo ou a antena a inserir seja nula, retorna NULL
 
-    nova->prox = g->inicio;
-    g->inicio = nova;
-    g->numantenas++;
+    Antena *atual = g->inicio;                                                // ponteiro que percorre a lista ligada de antenas
+    Antena *anterior = NULL;                                                  // ponteiro para guardar a antena anterior
 
-    return nova;
+    while (atual != NULL) {                                                                     // ciclo para encontrar a posição correta
+        if (nova->frequencia < atual->frequencia) break;                                        // compara as frequências, insere antes se for menor
+        if (nova->frequencia == atual->frequencia && nova->y < atual->y) break;                    // se frequências iguais, compara coordenadas y
+        if (nova->frequencia == atual->frequencia && nova->y == atual->y && nova->x < atual->x) break; // se y iguais, compara x
+
+        anterior = atual;                                                     // avança os ponteiros
+        atual = atual->prox;
+    }
+
+    if (anterior == NULL) {                                                   // se for inserida no início da lista
+        nova->prox = g->inicio;                                               // a nova antena aponta para a primeira atual
+        g->inicio = nova;                                                     // a nova antena passa a ser a primeira
+    } else {
+        nova->prox = anterior->prox;                                          // a nova antena aponta para a próxima da anterior
+        anterior->prox = nova;                                                // a anterior aponta agora para a nova
+    }
+
+    g->numantenas++;                                                          // incrementa o número de antenas no grafo
+
+    return nova;                                                              // retorna a antena inserida
 }
 
+
 Adjacencias* InserirAdjacencia(Antena *origem, Antena *destino)  {                  // função auxiliar que tambem nunca ira ser chamada no main pois e parte da funcao de interligar antenas
-    if (!origem || !destino) return NULL;
+    if (!origem || !destino) 
+    return NULL;
 
     int dx = destino->x - origem->x;                                               // inicialmente calculamos a distancia entre as duas antenas
     int dy = destino->y - origem->y;                                               // como o mapa e de coordenadas precisamos de obter quanto vale cada cateto
@@ -62,7 +70,7 @@ Adjacencias* InserirAdjacencia(Antena *origem, Antena *destino)  {              
     if (!adj)
     return NULL;
     adj->antenadestino = destino;                                                  // atribuidos os parametros da adjacencia
-    adj->distancia      = distancia;
+    adj->distancia = distancia;
 
     adj->prox = origem->adj;                                                       // a adjacencia e inserida na lista ligada de adjacencias
     origem->adj = adj;
@@ -148,7 +156,8 @@ bool AlterarAntena(Grafo *g, int x, int y, char novaFreq, int novoX, int novoY) 
             
             for (Antena *atual = g->inicio; atual; atual = atual->prox) {       // inicia um ciclo que percorre a lista das antenas
                 if (atual != a) {                                               // caso a antena pretendida para alterar nao seja a mesma que a que esta no ciclo atualmente
-                    RemoverAdjacencia(atual, a);                                // a funcao para remover adjacencia e chamada (mesmo que nao exista adjacencia entre as antenas)
+                    RemoverAdjacencia(atual, a);
+                    RemoverAdjacencia(a, atual);                                // a funcao para remover adjacencia e chamada (mesmo que nao exista adjacencia entre as antenas)
                 }
             }
 
@@ -321,59 +330,7 @@ int DFS(Grafo *g, int x, int y, int coords[][2]) {                          // f
     return DFSaux(inicio, coords, 0);
 }
 
-int BFS(Grafo *g, int x, int y, int coords[][2]) {                           // funcao principal de procura em largura a partir de uma antena nas coordenadas dadas
-    if (!g) 
-        return 0;
 
-    for (Antena *a = g->inicio; a; a = a->prox)                              // reinicializa o estado de visitado de todas as antenas
-        a->visitado = 0;
-
-    Antena *inicio = g->inicio;
-    while (inicio) {                                                         // procura a antena de partida com as coordenadas dadas
-        if (inicio->x == x && inicio->y == y)
-            break;
-        inicio = inicio->prox;
-    }
-    if (!inicio)
-        return 0;
-
-    NoFila *inicioFila = NULL, *fimFila = NULL;
-
-    NoFila *novo = malloc(sizeof(NoFila));                                          // aloca o primeiro nó da fila com a antena de partida
-    novo->antena = inicio;
-    novo->prox = NULL;
-    inicioFila = fimFila = novo;
-    inicio->visitado = true;
-
-    int i = 0;
-
-    while (inicioFila) {                                                            // enquanto houver antenas na fila
-        Antena *a = inicioFila->antena;
-
-        coords[i][0] = a->x;                                                        // guarda as coordenadas da antena atual
-        coords[i][1] = a->y;
-        i++;
-
-        for (Adjacencias *adj = a->adj; adj; adj = adj->prox) {                      // percorre as adjacencias da antena atual
-            Antena *vizinho = adj->antenadestino;
-            if (!vizinho->visitado) {
-                vizinho->visitado = true;
-
-                NoFila *novo = malloc(sizeof(NoFila));                              // adiciona o vizinho à fila
-                novo->antena = vizinho;
-                novo->prox = NULL;
-                fimFila->prox = novo;
-                fimFila = novo;
-            }
-        }
-
-        NoFila *temp = inicioFila;                                                  // remove o nó atual da fila
-        inicioFila = inicioFila->prox;
-        free(temp);
-    }
-
-    return i;                                                                       // retorna o número total de antenas visitadas
-}
 
 int GuardarCaminhos(Antena *origem, Antena *destino, int caminho[][2], int i, int caminhos[MAXCAMINHOS][MAXPASSOS][2], int total) {
     if (!origem || origem->visitado)                                                // caso a antena seja nula ou ja tenha sido visitada, nao prossegue

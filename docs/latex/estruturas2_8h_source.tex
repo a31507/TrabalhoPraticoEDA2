@@ -1,0 +1,65 @@
+\doxysection{estruturas2.\+h}
+\hypertarget{estruturas2_8h_source}{}\label{estruturas2_8h_source}\mbox{\hyperlink{estruturas2_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ MAXCAMINHOS\ 100}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ MAXPASSOS\ 100}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAntena}{Antena}}\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{char}\ frequencia;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{int}\ x,\ y;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAntena}{Antena}}\ *prox;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAdjacencias}{Adjacencias}}\ *adj;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{bool}\ visitado;}
+\DoxyCodeLine{00024\ \}\ \mbox{\hyperlink{structAntena}{Antena}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAdjacencias}{Adjacencias}}\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{float}\ distancia;}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{structAntena}{Antena}}\ *antenadestino;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structAdjacencias}{Adjacencias}}\ *prox;}
+\DoxyCodeLine{00033\ \}\ \mbox{\hyperlink{structAdjacencias}{Adjacencias}};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structGrafo}{Grafo}}\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{int}\ numantenas;}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{structAntena}{Antena}}\ *inicio;}
+\DoxyCodeLine{00041\ \}\ \mbox{\hyperlink{structGrafo}{Grafo}};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structNoFila}{NoFila}}\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{structAntena}{Antena}}\ *antena;}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structNoFila}{NoFila}}\ *prox;}
+\DoxyCodeLine{00049\ \}\ \mbox{\hyperlink{structNoFila}{NoFila}};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00055\ \mbox{\hyperlink{structGrafo}{Grafo}}*\ \mbox{\hyperlink{estruturas2_8h_ae9280ded3460e9db71c42aaa245cf2fa}{CriarGrafo}}();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00064\ \mbox{\hyperlink{structAntena}{Antena}}*\ \mbox{\hyperlink{estruturas2_8h_af8f12fe0064083af8575e8d4ee9d66e1}{CriarAntena}}(\textcolor{keywordtype}{char}\ freq,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00072\ \mbox{\hyperlink{structAntena}{Antena}}*\ \mbox{\hyperlink{estruturas2_8h_a8fc0ddd0891fd9bada9d887045f2ac10}{InsereAntena}}(\mbox{\hyperlink{structGrafo}{Grafo}}\ *g,\ \mbox{\hyperlink{structAntena}{Antena}}\ *a);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00082\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{estruturas2_8h_a12d968adcd611d89981e842b846e9b1b}{RemoverAntena}}(\mbox{\hyperlink{structGrafo}{Grafo}}\ *g,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00090\ \mbox{\hyperlink{structAdjacencias}{Adjacencias}}*\ \mbox{\hyperlink{estruturas2_8h_abfebbd1aa8bc2e841edf741669251916}{InserirAdjacencia}}(\mbox{\hyperlink{structAntena}{Antena}}\ *origem,\ \mbox{\hyperlink{structAntena}{Antena}}\ *destino);}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00099\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{estruturas2_8h_a1eb6c6d6b990f9abe5a68c69371fd486}{RemoverAdjacencia}}(\mbox{\hyperlink{structAntena}{Antena}}\ *origem,\ \mbox{\hyperlink{structAntena}{Antena}}\ *destino);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00112\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{estruturas2_8h_a4b5ff78cde96688aeadcd8e75f690cc7}{AlterarAntena}}(\mbox{\hyperlink{structGrafo}{Grafo}}\ *g,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{char}\ novaFreq,\ \textcolor{keywordtype}{int}\ novoX,\ \textcolor{keywordtype}{int}\ novoY);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00119\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{estruturas2_8h_a07470f4fcbfc13994fb9a6af3b13f4f5}{InterligarAntenas}}(\mbox{\hyperlink{structGrafo}{Grafo}}\ *g);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00128\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{estruturas2_8h_ab1e540d62549a5e74012394a9f92e83b}{GravarGrafoBinario}}(\mbox{\hyperlink{structGrafo}{Grafo}}\ *g,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *filename);}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00135\ \mbox{\hyperlink{structGrafo}{Grafo}}*\ \mbox{\hyperlink{estruturas2_8h_ae026c7ec9e59630391a80ae5afb02155}{CarregarGrafo}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *filename);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00144\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{estruturas2_8h_a2babdf2c1b80b1291bfc9f93013b3bf5}{DFSaux}}(\mbox{\hyperlink{structAntena}{Antena}}\ *atual,\ \textcolor{keywordtype}{int}\ coords[][2],\ \textcolor{keywordtype}{int}\ i);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00154\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{estruturas2_8h_ad5c46bf2b20f2f77de56b83075473840}{DFS}}(\mbox{\hyperlink{structGrafo}{Grafo}}\ *g,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{int}\ coords[][2]);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00164\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{estruturas2_8h_a21b47a916d82f6c26ab5fe88921ce219}{BFS}}(\mbox{\hyperlink{structGrafo}{Grafo}}\ *g,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{int}\ coords[][2]);}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00176\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{estruturas2_8h_a43f9be11d26f4e14732d73455aaf8724}{GuardarCaminhos}}(\mbox{\hyperlink{structAntena}{Antena}}\ *origem,\ \mbox{\hyperlink{structAntena}{Antena}}\ *destino,\ \textcolor{keywordtype}{int}\ caminho[][2],\ \textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ caminhos[MAXCAMINHOS][MAXPASSOS][2],\ \textcolor{keywordtype}{int}\ total);}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00188\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{estruturas2_8h_ad90ba344672a80684bf847f2072f47a6}{VerificarIntersecao}}(\mbox{\hyperlink{structAntena}{Antena}}\ *a,\ \mbox{\hyperlink{structAntena}{Antena}}\ *destino,\ \textcolor{keywordtype}{char}\ freq,\ \textcolor{keywordtype}{int}\ *ix,\ \textcolor{keywordtype}{int}\ *iy);}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00202\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{estruturas2_8h_ad4b2b00d37d25a0e4c1528f9cb82ea27}{HaIntersecaoEntreFrequencias}}(\mbox{\hyperlink{structGrafo}{Grafo}}\ *g,\ \textcolor{keywordtype}{int}\ x1,\ \textcolor{keywordtype}{int}\ y1,\ \textcolor{keywordtype}{int}\ x2,\ \textcolor{keywordtype}{int}\ y2,\ \textcolor{keywordtype}{int}\ *ix,\ \textcolor{keywordtype}{int}\ *iy);}
+\DoxyCodeLine{00203\ }
+
+\end{DoxyCode}

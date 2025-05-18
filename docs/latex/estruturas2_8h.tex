@@ -1,0 +1,459 @@
+\doxysection{estruturas2.\+h File Reference}
+\hypertarget{estruturas2_8h}{}\label{estruturas2_8h}\index{estruturas2.h@{estruturas2.h}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structAntena}{Antena}}
+\begin{DoxyCompactList}\small\item\em estrutura da antena que contem a frequência, as coordenadas, lista de adjacências, ponteiro para a próxima antena e flag de visitado \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structAdjacencias}{Adjacencias}}
+\begin{DoxyCompactList}\small\item\em estrutura que representa uma adjacência entre antenas (ligação entre duas antenas com a mesma frequência) \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structGrafo}{Grafo}}
+\begin{DoxyCompactList}\small\item\em estrutura principal do grafo que guarda o número total de antenas e o início da lista ligada de antenas \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structNoFila}{No\+Fila}}
+\begin{DoxyCompactList}\small\item\em estrutura auxiliar para implementar fila ligada (usada no bfs) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{estruturas2_8h_a09d811bbbafc37e85c9d0a1cf570ddb4}\label{estruturas2_8h_a09d811bbbafc37e85c9d0a1cf570ddb4} 
+\#define {\bfseries MAXCAMINHOS}~100
+\item 
+\Hypertarget{estruturas2_8h_a279eb3dcdf4b5163dd8ec351d79b457b}\label{estruturas2_8h_a279eb3dcdf4b5163dd8ec351d79b457b} 
+\#define {\bfseries MAXPASSOS}~100
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{estruturas2_8h_a843ab8b81393e8ebb3eb6b76e349acc2}\label{estruturas2_8h_a843ab8b81393e8ebb3eb6b76e349acc2} 
+typedef struct \mbox{\hyperlink{structAntena}{Antena}} {\bfseries Antena}
+\begin{DoxyCompactList}\small\item\em estrutura da antena que contem a frequência, as coordenadas, lista de adjacências, ponteiro para a próxima antena e flag de visitado \end{DoxyCompactList}\item 
+\Hypertarget{estruturas2_8h_aab5b7c548e057e8b559ca57cd6b61c8f}\label{estruturas2_8h_aab5b7c548e057e8b559ca57cd6b61c8f} 
+typedef struct \mbox{\hyperlink{structAdjacencias}{Adjacencias}} {\bfseries Adjacencias}
+\begin{DoxyCompactList}\small\item\em estrutura que representa uma adjacência entre antenas (ligação entre duas antenas com a mesma frequência) \end{DoxyCompactList}\item 
+\Hypertarget{estruturas2_8h_adab04f64457aac52a13e71e40915bd43}\label{estruturas2_8h_adab04f64457aac52a13e71e40915bd43} 
+typedef struct \mbox{\hyperlink{structGrafo}{Grafo}} {\bfseries Grafo}
+\begin{DoxyCompactList}\small\item\em estrutura principal do grafo que guarda o número total de antenas e o início da lista ligada de antenas \end{DoxyCompactList}\item 
+\Hypertarget{estruturas2_8h_a6956cc63aaf758a5ad4aa6780a52cf88}\label{estruturas2_8h_a6956cc63aaf758a5ad4aa6780a52cf88} 
+typedef struct \mbox{\hyperlink{structNoFila}{No\+Fila}} {\bfseries No\+Fila}
+\begin{DoxyCompactList}\small\item\em estrutura auxiliar para implementar fila ligada (usada no bfs) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{estruturas2_8h_ae9280ded3460e9db71c42aaa245cf2fa}{Criar\+Grafo}} ()
+\begin{DoxyCompactList}\small\item\em cria e inicializa um grafo vazio \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{estruturas2_8h_af8f12fe0064083af8575e8d4ee9d66e1}{Criar\+Antena}} (char freq, int x, int y)
+\begin{DoxyCompactList}\small\item\em cria uma antena com a frequência e coordenadas fornecidas \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{estruturas2_8h_a8fc0ddd0891fd9bada9d887045f2ac10}{Insere\+Antena}} (\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}g, \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}a)
+\begin{DoxyCompactList}\small\item\em insere uma nova antena no grafo \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{estruturas2_8h_a12d968adcd611d89981e842b846e9b1b}{Remover\+Antena}} (\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}g, int x, int y)
+\begin{DoxyCompactList}\small\item\em remove uma antena do grafo com base nas coordenadas \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structAdjacencias}{Adjacencias}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{estruturas2_8h_abfebbd1aa8bc2e841edf741669251916}{Inserir\+Adjacencia}} (\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}origem, \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}destino)
+\begin{DoxyCompactList}\small\item\em cria uma adjacência entre duas antenas \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{estruturas2_8h_a1eb6c6d6b990f9abe5a68c69371fd486}{Remover\+Adjacencia}} (\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}origem, \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}destino)
+\begin{DoxyCompactList}\small\item\em remove uma adjacência entre duas antenas \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{estruturas2_8h_a4b5ff78cde96688aeadcd8e75f690cc7}{Alterar\+Antena}} (\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}g, int x, int y, char nova\+Freq, int novoX, int novoY)
+\begin{DoxyCompactList}\small\item\em altera os dados de uma antena existente \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{estruturas2_8h_a07470f4fcbfc13994fb9a6af3b13f4f5}{Interligar\+Antenas}} (\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}g)
+\begin{DoxyCompactList}\small\item\em cria ligações entre antenas com a mesma frequência \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{estruturas2_8h_ab1e540d62549a5e74012394a9f92e83b}{Gravar\+Grafo\+Binario}} (\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}g, const char \texorpdfstring{$\ast$}{*}filename)
+\begin{DoxyCompactList}\small\item\em guarda o grafo num ficheiro binário \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{estruturas2_8h_ae026c7ec9e59630391a80ae5afb02155}{Carregar\+Grafo}} (const char \texorpdfstring{$\ast$}{*}filename)
+\begin{DoxyCompactList}\small\item\em carrega o grafo a partir de um ficheiro de texto \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{estruturas2_8h_a2babdf2c1b80b1291bfc9f93013b3bf5}{DFSaux}} (\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}atual, int coords\mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]}, int i)
+\begin{DoxyCompactList}\small\item\em função auxiliar da dfs que percorre recursivamente o grafo \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{estruturas2_8h_ad5c46bf2b20f2f77de56b83075473840}{DFS}} (\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}g, int x, int y, int coords\mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]})
+\begin{DoxyCompactList}\small\item\em executa uma pesquisa em profundidade a partir de uma antena \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{estruturas2_8h_a21b47a916d82f6c26ab5fe88921ce219}{BFS}} (\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}g, int x, int y, int coords\mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]})
+\begin{DoxyCompactList}\small\item\em executa uma pesquisa em largura (bfs) a partir de uma antena \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{estruturas2_8h_a43f9be11d26f4e14732d73455aaf8724}{Guardar\+Caminhos}} (\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}origem, \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}destino, int caminho\mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]}, int i, int caminhos\mbox{[}MAXCAMINHOS\mbox{]}\mbox{[}MAXPASSOS\mbox{]}\mbox{[}2\mbox{]}, int total)
+\begin{DoxyCompactList}\small\item\em guarda todos os caminhos possíveis entre duas antenas \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{estruturas2_8h_ad90ba344672a80684bf847f2072f47a6}{Verificar\+Intersecao}} (\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}a, \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}destino, char freq, int \texorpdfstring{$\ast$}{*}ix, int \texorpdfstring{$\ast$}{*}iy)
+\begin{DoxyCompactList}\small\item\em verifica se existe uma interseção de frequências no caminho entre duas antenas \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{estruturas2_8h_ad4b2b00d37d25a0e4c1528f9cb82ea27}{Ha\+Intersecao\+Entre\+Frequencias}} (\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}g, int x1, int y1, int x2, int y2, int \texorpdfstring{$\ast$}{*}ix, int \texorpdfstring{$\ast$}{*}iy)
+\begin{DoxyCompactList}\small\item\em função principal que verifica se existe interseção de frequências entre duas antenas \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+goncalo rodrigues (\href{mailto:a31507@alunos.ipca.pt}{\texttt{ a31507@alunos.\+ipca.\+pt}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/05-\/12
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{estruturas2_8h_a4b5ff78cde96688aeadcd8e75f690cc7}\label{estruturas2_8h_a4b5ff78cde96688aeadcd8e75f690cc7} 
+\index{estruturas2.h@{estruturas2.h}!AlterarAntena@{AlterarAntena}}
+\index{AlterarAntena@{AlterarAntena}!estruturas2.h@{estruturas2.h}}
+\doxysubsubsection{\texorpdfstring{AlterarAntena()}{AlterarAntena()}}
+{\footnotesize\ttfamily bool Alterar\+Antena (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}}]{g,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{char}]{nova\+Freq,  }\item[{int}]{novoX,  }\item[{int}]{novoY }\end{DoxyParamCaption})}
+
+
+
+altera os dados de uma antena existente 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & ponteiro para o grafo \\
+\hline
+{\em x} & coordenada x da antena a alterar \\
+\hline
+{\em y} & coordenada y da antena a alterar \\
+\hline
+{\em nova\+Freq} & nova frequência a atribuir \\
+\hline
+{\em novoX} & nova coordenada x \\
+\hline
+{\em novoY} & nova coordenada y \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se a antena foi alterada 
+
+false caso contrário 
+\end{DoxyReturn}
+\Hypertarget{estruturas2_8h_a21b47a916d82f6c26ab5fe88921ce219}\label{estruturas2_8h_a21b47a916d82f6c26ab5fe88921ce219} 
+\index{estruturas2.h@{estruturas2.h}!BFS@{BFS}}
+\index{BFS@{BFS}!estruturas2.h@{estruturas2.h}}
+\doxysubsubsection{\texorpdfstring{BFS()}{BFS()}}
+{\footnotesize\ttfamily int BFS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}}]{g,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{coords\mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+executa uma pesquisa em largura (bfs) a partir de uma antena 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & ponteiro para o grafo \\
+\hline
+{\em x} & coordenada x da antena inicial \\
+\hline
+{\em y} & coordenada y da antena inicial \\
+\hline
+{\em coords} & array onde serão guardadas as coordenadas das antenas visitadas \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int número de antenas visitadas 
+\end{DoxyReturn}
+\Hypertarget{estruturas2_8h_ae026c7ec9e59630391a80ae5afb02155}\label{estruturas2_8h_ae026c7ec9e59630391a80ae5afb02155} 
+\index{estruturas2.h@{estruturas2.h}!CarregarGrafo@{CarregarGrafo}}
+\index{CarregarGrafo@{CarregarGrafo}!estruturas2.h@{estruturas2.h}}
+\doxysubsubsection{\texorpdfstring{CarregarGrafo()}{CarregarGrafo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*} Carregar\+Grafo (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
+
+
+
+carrega o grafo a partir de um ficheiro de texto 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & nome do ficheiro de texto \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Grafo\texorpdfstring{$\ast$}{*} ponteiro para o grafo carregado 
+\end{DoxyReturn}
+\Hypertarget{estruturas2_8h_af8f12fe0064083af8575e8d4ee9d66e1}\label{estruturas2_8h_af8f12fe0064083af8575e8d4ee9d66e1} 
+\index{estruturas2.h@{estruturas2.h}!CriarAntena@{CriarAntena}}
+\index{CriarAntena@{CriarAntena}!estruturas2.h@{estruturas2.h}}
+\doxysubsubsection{\texorpdfstring{CriarAntena()}{CriarAntena()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} Criar\+Antena (\begin{DoxyParamCaption}\item[{char}]{freq,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+cria uma antena com a frequência e coordenadas fornecidas 
+
+
+\begin{DoxyParams}{Parameters}
+{\em freq} & letra da frequência da antena \\
+\hline
+{\em x} & coordenada x \\
+\hline
+{\em y} & coordenada y \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Antena\texorpdfstring{$\ast$}{*} ponteiro para a antena criada 
+\end{DoxyReturn}
+\Hypertarget{estruturas2_8h_ae9280ded3460e9db71c42aaa245cf2fa}\label{estruturas2_8h_ae9280ded3460e9db71c42aaa245cf2fa} 
+\index{estruturas2.h@{estruturas2.h}!CriarGrafo@{CriarGrafo}}
+\index{CriarGrafo@{CriarGrafo}!estruturas2.h@{estruturas2.h}}
+\doxysubsubsection{\texorpdfstring{CriarGrafo()}{CriarGrafo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*} Criar\+Grafo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+cria e inicializa um grafo vazio 
+
+\begin{DoxyReturn}{Returns}
+Grafo\texorpdfstring{$\ast$}{*} ponteiro para o grafo criado 
+\end{DoxyReturn}
+\Hypertarget{estruturas2_8h_ad5c46bf2b20f2f77de56b83075473840}\label{estruturas2_8h_ad5c46bf2b20f2f77de56b83075473840} 
+\index{estruturas2.h@{estruturas2.h}!DFS@{DFS}}
+\index{DFS@{DFS}!estruturas2.h@{estruturas2.h}}
+\doxysubsubsection{\texorpdfstring{DFS()}{DFS()}}
+{\footnotesize\ttfamily int DFS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}}]{g,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{coords\mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+executa uma pesquisa em profundidade a partir de uma antena 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & ponteiro para o grafo \\
+\hline
+{\em x} & coordenada x da antena inicial \\
+\hline
+{\em y} & coordenada y da antena inicial \\
+\hline
+{\em coords} & array onde serão guardadas as coordenadas das antenas visitadas \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int número de antenas visitadas 
+\end{DoxyReturn}
+\Hypertarget{estruturas2_8h_a2babdf2c1b80b1291bfc9f93013b3bf5}\label{estruturas2_8h_a2babdf2c1b80b1291bfc9f93013b3bf5} 
+\index{estruturas2.h@{estruturas2.h}!DFSaux@{DFSaux}}
+\index{DFSaux@{DFSaux}!estruturas2.h@{estruturas2.h}}
+\doxysubsubsection{\texorpdfstring{DFSaux()}{DFSaux()}}
+{\footnotesize\ttfamily int DFSaux (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{atual,  }\item[{int}]{coords\mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]},  }\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+função auxiliar da dfs que percorre recursivamente o grafo 
+
+
+\begin{DoxyParams}{Parameters}
+{\em atual} & antena atual \\
+\hline
+{\em coords} & array onde serão guardadas as coordenadas das antenas visitadas \\
+\hline
+{\em i} & índice atual \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int número de antenas visitadas 
+\end{DoxyReturn}
+\Hypertarget{estruturas2_8h_ab1e540d62549a5e74012394a9f92e83b}\label{estruturas2_8h_ab1e540d62549a5e74012394a9f92e83b} 
+\index{estruturas2.h@{estruturas2.h}!GravarGrafoBinario@{GravarGrafoBinario}}
+\index{GravarGrafoBinario@{GravarGrafoBinario}!estruturas2.h@{estruturas2.h}}
+\doxysubsubsection{\texorpdfstring{GravarGrafoBinario()}{GravarGrafoBinario()}}
+{\footnotesize\ttfamily bool Gravar\+Grafo\+Binario (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}}]{g,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
+
+
+
+guarda o grafo num ficheiro binário 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & ponteiro para o grafo \\
+\hline
+{\em filename} & nome do ficheiro binário \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se o grafo foi guardado com sucesso 
+
+false caso contrário 
+\end{DoxyReturn}
+\Hypertarget{estruturas2_8h_a43f9be11d26f4e14732d73455aaf8724}\label{estruturas2_8h_a43f9be11d26f4e14732d73455aaf8724} 
+\index{estruturas2.h@{estruturas2.h}!GuardarCaminhos@{GuardarCaminhos}}
+\index{GuardarCaminhos@{GuardarCaminhos}!estruturas2.h@{estruturas2.h}}
+\doxysubsubsection{\texorpdfstring{GuardarCaminhos()}{GuardarCaminhos()}}
+{\footnotesize\ttfamily int Guardar\+Caminhos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{origem,  }\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{destino,  }\item[{int}]{caminho\mbox{[}$\,$\mbox{]}\mbox{[}2\mbox{]},  }\item[{int}]{i,  }\item[{int}]{caminhos\mbox{[}\+MAXCAMINHOS\mbox{]}\mbox{[}\+MAXPASSOS\mbox{]}\mbox{[}2\mbox{]},  }\item[{int}]{total }\end{DoxyParamCaption})}
+
+
+
+guarda todos os caminhos possíveis entre duas antenas 
+
+
+\begin{DoxyParams}{Parameters}
+{\em origem} & antena de origem \\
+\hline
+{\em destino} & antena de destino \\
+\hline
+{\em caminho} & caminho temporário atual \\
+\hline
+{\em i} & índice atual no caminho \\
+\hline
+{\em caminhos} & array com todos os caminhos encontrados \\
+\hline
+{\em total} & total de caminhos encontrados até agora \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int total de caminhos encontrados 
+\end{DoxyReturn}
+\Hypertarget{estruturas2_8h_ad4b2b00d37d25a0e4c1528f9cb82ea27}\label{estruturas2_8h_ad4b2b00d37d25a0e4c1528f9cb82ea27} 
+\index{estruturas2.h@{estruturas2.h}!HaIntersecaoEntreFrequencias@{HaIntersecaoEntreFrequencias}}
+\index{HaIntersecaoEntreFrequencias@{HaIntersecaoEntreFrequencias}!estruturas2.h@{estruturas2.h}}
+\doxysubsubsection{\texorpdfstring{HaIntersecaoEntreFrequencias()}{HaIntersecaoEntreFrequencias()}}
+{\footnotesize\ttfamily bool Ha\+Intersecao\+Entre\+Frequencias (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}}]{g,  }\item[{int}]{x1,  }\item[{int}]{y1,  }\item[{int}]{x2,  }\item[{int}]{y2,  }\item[{int \texorpdfstring{$\ast$}{*}}]{ix,  }\item[{int \texorpdfstring{$\ast$}{*}}]{iy }\end{DoxyParamCaption})}
+
+
+
+função principal que verifica se existe interseção de frequências entre duas antenas 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & ponteiro para o grafo \\
+\hline
+{\em x1} & coordenada x da antena de origem \\
+\hline
+{\em y1} & coordenada y da antena de origem \\
+\hline
+{\em x2} & coordenada x da antena de destino \\
+\hline
+{\em y2} & coordenada y da antena de destino \\
+\hline
+{\em ix} & ponteiro para guardar a coordenada x da interseção (caso exista) \\
+\hline
+{\em iy} & ponteiro para guardar a coordenada y da interseção (caso exista) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se existir interseção 
+
+false caso contrário 
+\end{DoxyReturn}
+\Hypertarget{estruturas2_8h_a8fc0ddd0891fd9bada9d887045f2ac10}\label{estruturas2_8h_a8fc0ddd0891fd9bada9d887045f2ac10} 
+\index{estruturas2.h@{estruturas2.h}!InsereAntena@{InsereAntena}}
+\index{InsereAntena@{InsereAntena}!estruturas2.h@{estruturas2.h}}
+\doxysubsubsection{\texorpdfstring{InsereAntena()}{InsereAntena()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*} Insere\+Antena (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}}]{g,  }\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{a }\end{DoxyParamCaption})}
+
+
+
+insere uma nova antena no grafo 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & ponteiro para o grafo \\
+\hline
+{\em a} & ponteiro para a nova antena \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Antena\texorpdfstring{$\ast$}{*} ponteiro para a antena inserida 
+\end{DoxyReturn}
+\Hypertarget{estruturas2_8h_abfebbd1aa8bc2e841edf741669251916}\label{estruturas2_8h_abfebbd1aa8bc2e841edf741669251916} 
+\index{estruturas2.h@{estruturas2.h}!InserirAdjacencia@{InserirAdjacencia}}
+\index{InserirAdjacencia@{InserirAdjacencia}!estruturas2.h@{estruturas2.h}}
+\doxysubsubsection{\texorpdfstring{InserirAdjacencia()}{InserirAdjacencia()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structAdjacencias}{Adjacencias}} \texorpdfstring{$\ast$}{*} Inserir\+Adjacencia (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{origem,  }\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{destino }\end{DoxyParamCaption})}
+
+
+
+cria uma adjacência entre duas antenas 
+
+
+\begin{DoxyParams}{Parameters}
+{\em origem} & antena de origem \\
+\hline
+{\em destino} & antena de destino \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Adjacencias\texorpdfstring{$\ast$}{*} ponteiro para a adjacência criada 
+\end{DoxyReturn}
+\Hypertarget{estruturas2_8h_a07470f4fcbfc13994fb9a6af3b13f4f5}\label{estruturas2_8h_a07470f4fcbfc13994fb9a6af3b13f4f5} 
+\index{estruturas2.h@{estruturas2.h}!InterligarAntenas@{InterligarAntenas}}
+\index{InterligarAntenas@{InterligarAntenas}!estruturas2.h@{estruturas2.h}}
+\doxysubsubsection{\texorpdfstring{InterligarAntenas()}{InterligarAntenas()}}
+{\footnotesize\ttfamily int Interligar\+Antenas (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}}]{g }\end{DoxyParamCaption})}
+
+
+
+cria ligações entre antenas com a mesma frequência 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & ponteiro para o grafo \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int número total de ligações criadas 
+\end{DoxyReturn}
+\Hypertarget{estruturas2_8h_a1eb6c6d6b990f9abe5a68c69371fd486}\label{estruturas2_8h_a1eb6c6d6b990f9abe5a68c69371fd486} 
+\index{estruturas2.h@{estruturas2.h}!RemoverAdjacencia@{RemoverAdjacencia}}
+\index{RemoverAdjacencia@{RemoverAdjacencia}!estruturas2.h@{estruturas2.h}}
+\doxysubsubsection{\texorpdfstring{RemoverAdjacencia()}{RemoverAdjacencia()}}
+{\footnotesize\ttfamily bool Remover\+Adjacencia (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{origem,  }\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{destino }\end{DoxyParamCaption})}
+
+
+
+remove uma adjacência entre duas antenas 
+
+
+\begin{DoxyParams}{Parameters}
+{\em origem} & antena de origem \\
+\hline
+{\em destino} & antena de destino \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se a adjacência foi removida 
+
+false caso contrário 
+\end{DoxyReturn}
+\Hypertarget{estruturas2_8h_a12d968adcd611d89981e842b846e9b1b}\label{estruturas2_8h_a12d968adcd611d89981e842b846e9b1b} 
+\index{estruturas2.h@{estruturas2.h}!RemoverAntena@{RemoverAntena}}
+\index{RemoverAntena@{RemoverAntena}!estruturas2.h@{estruturas2.h}}
+\doxysubsubsection{\texorpdfstring{RemoverAntena()}{RemoverAntena()}}
+{\footnotesize\ttfamily bool Remover\+Antena (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGrafo}{Grafo}} \texorpdfstring{$\ast$}{*}}]{g,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
+
+
+remove uma antena do grafo com base nas coordenadas 
+
+
+\begin{DoxyParams}{Parameters}
+{\em g} & ponteiro para o grafo \\
+\hline
+{\em x} & coordenada x da antena a remover \\
+\hline
+{\em y} & coordenada y da antena a remover \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se a antena foi removida com sucesso 
+
+false caso contrário 
+\end{DoxyReturn}
+\Hypertarget{estruturas2_8h_ad90ba344672a80684bf847f2072f47a6}\label{estruturas2_8h_ad90ba344672a80684bf847f2072f47a6} 
+\index{estruturas2.h@{estruturas2.h}!VerificarIntersecao@{VerificarIntersecao}}
+\index{VerificarIntersecao@{VerificarIntersecao}!estruturas2.h@{estruturas2.h}}
+\doxysubsubsection{\texorpdfstring{VerificarIntersecao()}{VerificarIntersecao()}}
+{\footnotesize\ttfamily bool Verificar\+Intersecao (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{a,  }\item[{\mbox{\hyperlink{structAntena}{Antena}} \texorpdfstring{$\ast$}{*}}]{destino,  }\item[{char}]{freq,  }\item[{int \texorpdfstring{$\ast$}{*}}]{ix,  }\item[{int \texorpdfstring{$\ast$}{*}}]{iy }\end{DoxyParamCaption})}
+
+
+
+verifica se existe uma interseção de frequências no caminho entre duas antenas 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & antena atual \\
+\hline
+{\em destino} & antena de destino \\
+\hline
+{\em freq} & frequência da antena de origem \\
+\hline
+{\em ix} & ponteiro para guardar a coordenada x da interseção (caso exista) \\
+\hline
+{\em iy} & ponteiro para guardar a coordenada y da interseção (caso exista) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true se existir interseção 
+
+false caso contrário 
+\end{DoxyReturn}
